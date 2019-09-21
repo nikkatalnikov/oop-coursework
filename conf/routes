@@ -1,0 +1,22 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# User endpoints
+POST        /login                  controllers.ProfileController.login
+GET         /getAll                 controllers.ProfileController.getAllUsers
+POST        /signup                 controllers.ProfileController.signup
+
+# Delivery management endpoints
+# GET         /delivery                 controllers.DeliveryController.listDeliveries
+# POST        /delivery                 controllers.DeliveryController.createDelivery
+# PATCH       /delivery                 controllers.DeliveryController.editDelivery
+# DELETE      /delivery                 controllers.DeliveryController.deleteDelivery
+
+# Delivery metadata endpoints
+# GET        /couriers                 controllers.DeliveryMetadataController.listCouriersProfiles
+# PATCH      /courier                  controllers.DeliveryMetadataController.editCourierProfile
+# GET        /districts                controllers.DeliveryMetadataController.listDistricts
+# PATCH      /district                 controllers.DeliveryMetadataController.editDistrict
+
