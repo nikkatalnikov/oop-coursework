@@ -19,12 +19,35 @@ docker logs mysql
 ```
  * Launch the app: `sbt run` and then exec `curl localhost:9000`
  * Use Auth token (test only) for protected API endpoints: `Bearer YOUR_TOKEN`
- * Try to make requests to the API with curl: 
+ * Try to make requests to the API with curl.
+    * Create user and get token (copy Authorization header from `/login` response)
  
 ```
-curl -XPOST localhost:9000/signup -H "Content-Type: application/json" -d '{"login": "abcb", "password": "abcd", "name": "Nik", "surname": "1234"}' -v
-curl -XPOST localhost:9000/login -H "Content-Type: application/json" -d '{"login": "abcb", "password": "abcd"}' -v
-curl -XGET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoiYWJjYiIsInBhc3N3b3JkIjoiYWJjZCJ9fQ.Q1oHVWeJZAt0eag7DFMr5n7mDvhWCEXn465hN782V5c" localhost:9000/getAll
+curl -XPOST localhost:9000/signup -H "Content-Type: application/json" -d '{"login": "testuser", "password": "abcd", "name": "Nik", "surname": "Katalnikov"}' -v
+curl -XPOST localhost:9000/login -H "Content-Type: application/json" -d '{"login": "testuser", "password": "abcd"}' -v
+```
+
+   * Check that everything works fine (Read, Create, Update, Delete):
+
+```
+curl -XGET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoidGVzdHVzZXIiLCJwYXNzd29yZCI6ImFiY2QifX0.Fu6kWsQ6KNg_F8-iwbp60zcTn0AaZ-hu8MWUK1m0p-I" localhost:9000/users   
+[{"id":1,"login":"Nik","password":"Katalnikov","name":"testuser","surname":"abcd"}]
+```
+```
+curl -XGET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoidGVzdHVzZXIiLCJwYXNzd29yZCI6ImFiY2QifX0.Fu6kWsQ6KNg_F8-iwbp60zcTn0AaZ-hu8MWUK1m0p-I" localhost:9000/deliveries
+[{"id":1,"title":"Philosophi Naturalis Principia Mathematica","recipientNumber":1111111111,"createdAt":"2001-01-01 02:00:00","district":{"id":1,"title":"Pechecrsky_West","city":"Kyiv"},"courier":{"id":1,"name":"Isaac","surname":"Newton"}}
+```
+```
+curl -XPOST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoidGVzdHVzZXIiLCJwYXNzd29yZCI6ImFiY2QifX0.Fu6kWsQ6KNg_F8-iwbp60zcTn0AaZ-hu8MWUK1m0p-I" -H "Content-Type: application/json" localhost:9000/delivery -d '{"title": "Plato. Atlantis", "recipientNumber": 12344, "courier_id": 1, "district_id": 1}'
+```  
+```
+curl -XPOST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoidGVzdHVzZXIiLCJwYXNzd29yZCI6ImFiY2QifX0.Fu6kWsQ6KNg_F8-iwbp60zcTn0AaZ-hu8MWUK1m0p-I" -H "Content-Type: application/json" localhost:9000/delivery -d '{"title": "Plato. Dialogs", "recipientNumber": 12344, "courier_id": 1, "district_id": 1}'
+```
+```
+curl -XPATCH -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoidGVzdHVzZXIiLCJwYXNzd29yZCI6ImFiY2QifX0.Fu6kWsQ6KNg_F8-iwbp60zcTn0AaZ-hu8MWUK1m0p-I" -H "Content-Type: application/json" localhost:9000/delivery -d '{"id": 4, "title": "Plato. Dialogs", "recipientNumber": 10000, "courier_id": 2, "district_id": 2}'
+```  
+```
+curl -XDELETE -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoidGVzdHVzZXIiLCJwYXNzd29yZCI6ImFiY2QifX0.Fu6kWsQ6KNg_F8-iwbp60zcTn0AaZ-hu8MWUK1m0p-I" -H "Content-Type: application/json" localhost:9000/delivery -d '1'
 ```
  * Drop database:
 ```

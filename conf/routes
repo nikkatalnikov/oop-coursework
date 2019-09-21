@@ -5,18 +5,17 @@
 
 # User endpoints
 POST        /login                  controllers.ProfileController.login
-GET         /getAll                 controllers.ProfileController.getAllUsers
+GET         /users                  controllers.ProfileController.getAllUsers
 POST        /signup                 controllers.ProfileController.signup
 
 # Delivery management endpoints
-# GET         /delivery                 controllers.DeliveryController.listDeliveries
-# POST        /delivery                 controllers.DeliveryController.createDelivery
-# PATCH       /delivery                 controllers.DeliveryController.editDelivery
-# DELETE      /delivery                 controllers.DeliveryController.deleteDelivery
+GET         /deliveries               controllers.DeliveryController.listDeliveries
+POST        /delivery                 controllers.DeliveryController.createDelivery
+PATCH       /delivery                 controllers.DeliveryController.editDelivery
+DELETE      /delivery                 controllers.DeliveryController.deleteDelivery
 
-# Delivery metadata endpoints
+# Personal info metadata endpoints
 # GET        /couriers                 controllers.DeliveryMetadataController.listCouriersProfiles
 # PATCH      /courier                  controllers.DeliveryMetadataController.editCourierProfile
-# GET        /districts                controllers.DeliveryMetadataController.listDistricts
-# PATCH      /district                 controllers.DeliveryMetadataController.editDistrict
+# PATCH      /profile                  controllers.DeliveryMetadataController.editProfile
 

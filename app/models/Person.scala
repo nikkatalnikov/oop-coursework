@@ -2,7 +2,7 @@ package models
 
 import com.google.inject.Inject
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
-import slick.jdbc.{GetResult, JdbcProfile}
+import slick.jdbc.JdbcProfile
 import slick.jdbc.MySQLProfile.api._
 
 
