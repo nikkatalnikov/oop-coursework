@@ -9,6 +9,8 @@ CREATE TABLE `log_db`.`district` (
     `city` VARCHAR(45) NOT NULL)
 ;
 
+INSERT INTO `log_db`.`district` (`title`, `city`) values ("Pechecrsky_West", "Kyiv");
+INSERT INTO `log_db`.`district` (`title`, `city`) values ("Holosiivsky_North", "Kyiv");
 
 -- !Downs
 DROP TABLE `log_db`.`district`

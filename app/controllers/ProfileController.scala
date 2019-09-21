@@ -4,7 +4,6 @@ import java.time.Clock
 
 import javax.inject._
 import models.User
-import pdi.jwt.JwtSession
 import play.api.Configuration
 import play.api.libs.json.{JsError, JsValue, Json}
 import services.UserService

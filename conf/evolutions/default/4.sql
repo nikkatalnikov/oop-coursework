@@ -5,6 +5,7 @@
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `log_db`.`parcel` (
     `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `title` VARCHAR(200) NOT NULL,
     `recipient_number` BIGINT NOT NULL,
     `courier_id` BIGINT NOT NULL,
     `district` BIGINT NOT NULL,

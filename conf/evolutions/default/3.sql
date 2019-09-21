@@ -12,5 +12,8 @@ CREATE TABLE IF NOT EXISTS `log_db`.`courier` (
 ;
 
 
+INSERT INTO `log_db`.`courier` (`name`, `surname`, `district`) values ("Isaac", "Newton", 1);
+INSERT INTO `log_db`.`courier` (`name`, `surname`, `district`) values ("Thomas", "More", 2);
+
 -- !Downs
 DROP TABLE `log_db`.`courier`;
